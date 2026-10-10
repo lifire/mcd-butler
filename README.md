@@ -65,8 +65,55 @@ mcd-butler/
 
 > 将 `${MCD_MCP_TOKEN}` 替换为你的真实 Token（或写入环境变量后由客户端展开）。**请勿把真实 Token 提交进仓库。**
 
-### 3. 启用 Skill
-将本仓库作为 WorkBuddy 用户级 / 项目级 Skill 安装，或在对话中直接引用 `SKILL.md` 内容即可。
+### 3. 启用 Skill（两种方式，不会 Git 也能装）
+
+本仓库本身就是一个 WorkBuddy Skill：**整个 `mcd-butler` 文件夹**就是技能包，`SKILL.md` 已经在文件夹根目录。只要把这个文件夹放到 WorkBuddy 的技能目录里并重启即可。
+
+> 推荐放「用户级」技能目录（所有项目都能用）。下面的路径把 `你的用户名` 换成你电脑的实际用户名即可。
+
+#### 方式 A：不会 Git —— 下载 ZIP 手动安装（最省事）
+
+1. 打开本项目页面：https://github.com/lifire/mcd-butler
+2. 点页面右上角绿色 **「Code」** 按钮 → 选 **「Download ZIP」**，把压缩包下载到本地（文件名类似 `mcd-butler-main.zip`）。
+3. 解压压缩包，会得到文件夹 `mcd-butler-main`，里面有 `SKILL.md`、`README.md` 等。**把文件夹改名成 `mcd-butler`**（去掉 `-main` 后缀，名字要和技能一致）。
+4. 打开 WorkBuddy 的技能目录（按你的系统选其一）：
+   - **Windows**：`C:\Users\你的用户名\.workbuddy\skills\`
+   - **macOS**：`/Users/你的用户名/.workbuddy/skills/`
+   - **Linux**：`/home/你的用户名/.workbuddy/skills/`
+   - 如果 `skills` 文件夹不存在，就自己新建一个。
+5. 把第 3 步改名好的 **`mcd-butler` 文件夹整体**复制/拖进 `skills` 目录。放完后的最终结构必须是：
+   ```
+   .workbuddy/skills/mcd-butler/SKILL.md   ← 关键：SKILL.md 要在这里
+   ```
+6. **完全退出并重新打开 WorkBuddy**。左侧「专家·技能·连接器」→「技能」里就能看到「🍔 麦麦全能管家 McButler」。
+
+#### 方式 B：会用 Git —— 克隆后放进技能目录
+
+```bash
+# 1) 克隆到任意本地目录
+git clone https://github.com/lifire/mcd-butler.git
+
+# 2) 把克隆出来的 mcd-butler 文件夹，按方式 A 第 4~5 步放进 ~/.workbuddy/skills/
+#    （Windows 示例：复制到 C:\Users\你的用户名\.workbuddy\skills\mcd-butler\）
+
+# 进阶：不想复制、想保持和仓库同步，可用符号链接（macOS/Linux）
+ln -s "$(pwd)/mcd-butler" ~/.workbuddy/skills/mcd-butler
+```
+同样重启 WorkBuddy 即可生效。
+
+#### ✅ 验证是否启用成功
+
+在 WorkBuddy 对话框里直接说一句，例如：
+> `来份今日麦报` 或 `麦麦省券怎么领？`
+
+如果管家先检查 `mcd-mcp` 连接器、再调用麦当劳工具并返回结果，说明 Skill 已正常工作。
+
+#### ❗ 看不到技能？按这个排查
+
+- 文件夹名是不是 `mcd-butler`？`SKILL.md` 是不是在 `skills/mcd-butler/SKILL.md`（**不要多套一层**，例如 `skills/mcd-butler/mcd-butler/SKILL.md` 是错的）。
+- `SKILL.md` 最顶部 `---` 之间是否有 `name: mcd-butler` 和 `description: ...`？被改坏会导致加载失败。
+- 改完目录结构后**有没有重启 WorkBuddy**？
+- 是否已经在第 2 步配置并**启用**了 `mcd-mcp` 连接器？（Skill 依赖它才能取数据）
 
 ### 4.（可选）开启「今日麦报」每日自动推送
 见 `daily-report/automation.example.json`，在 WorkBuddy 创建一个每日定时自动化，prompt 为「生成今日麦报并推送」。
