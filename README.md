@@ -1,19 +1,19 @@
 # 🍔 麦麦全能管家 · McButler
 
-> 基于 **麦当劳中国 MCP（mcp.mcd.cn）** 的一站式智能助手 Skill —— 帮你省钱、吃好、用好积分、顺手点单。
+> 基于 **麦当劳中国 MCP（mcp.mcd.cn）** 的一站式智能助手 Skill —— 帮你省钱、吃好、用好积分、顺手点单。  
 > 本项目的参赛作品，非麦当劳官方产品；输出仅供参考，以官方实时数据为准。所有产出统一为可口可爱风 HTML 页面，可直接在浏览器预览/分享。麦报内每个动作均带「🤖 去 WorkBuddy 执行」按钮，点一下复制指令、去 WorkBuddy 发送即可执行（下单/领券前会先确认）。
 
 ---
 
 ## ✨ 功能特性（五大能力）
 
-| # | 能力 | 一句话 | 核心 MCP 工具 |
-|---|---|---|---|
-| 1 | 🗞️ **今日麦报** | 每日自动推送：可领券 + 当月活动 + 最省吃法 | `available-coupons` / `auto-bind-coupons` / `query-store-coupons` / `campaign-calendar` / `query-meals` / `calculate-price` |
-| 2 | 💰 **省钱雷达** | 自动领麦麦省券、比门店券、算最省组合 | `query-my-coupons` / `query-store-coupons` / `available-coupons` / `calculate-price` |
-| 3 | 🥗 **热量营养师** | 按每日热量预算（默认 500 kcal）配麦当劳套餐 | `list-nutrition-foods` / `query-meals` / `query-meal-detail` / `calculate-price` |
-| 4 | ⭐ **积分最优解** | 积分怎么换最值、抽奖策略与核对 | `query-my-account` / `mall-points-products` / `mall-product-detail` / `query-lottery-info` / `draw-lottery` / `query-my-prizes` |
-| 5 | 🛵 **一句话点餐** | 自然语言选店选品算价下单（下单前强制确认） | `query-nearby-stores` / `delivery-query-addresses` / `query-meals` / `calculate-price` / `create-order` |
+| # | 能力           | 一句话                        | 核心 MCP 工具                                                                                                                       |
+| - | ------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 1 | 🗞️ **今日麦报** | 每日自动推送：可领券 + 当月活动 + 最省吃法   | `available-coupons` / `auto-bind-coupons` / `query-store-coupons` / `campaign-calendar` / `query-meals` / `calculate-price`     |
+| 2 | 💰 **省钱雷达**  | 自动领麦麦省券、比门店券、算最省组合         | `query-my-coupons` / `query-store-coupons` / `available-coupons` / `calculate-price`                                            |
+| 3 | 🥗 **热量营养师** | 按每日热量预算（默认 500 kcal）配麦当劳套餐 | `list-nutrition-foods` / `query-meals` / `query-meal-detail` / `calculate-price`                                                |
+| 4 | ⭐ **积分最优解**  | 积分怎么换最值、抽奖策略与核对            | `query-my-account` / `mall-points-products` / `mall-product-detail` / `query-lottery-info` / `draw-lottery` / `query-my-prizes` |
+| 5 | 🛵 **一句话点餐** | 自然语言选店选品算价下单（下单前强制确认）      | `query-nearby-stores` / `delivery-query-addresses` / `query-meals` / `calculate-price` / `create-order`                         |
 
 > 所有数据均来自麦当劳 MCP 实时返回，不编造、不缓存旧价。
 
@@ -44,9 +44,11 @@ mcd-butler/
 ## 🚀 安装与配置
 
 ### 1. 申请麦当劳 MCP Token
+
 前往 [open.mcd.cn/mcp](https://open.mcd.cn/mcp) → 右上角登录（手机号验证）→ 控制台 → 激活 → 复制 Token。
 
 ### 2. 在 WorkBuddy 配置 mcd-mcp 连接器
+
 左侧「专家·技能·连接器」→「连接器」→「自定义连接器」→「配置 MCP」，粘贴：
 
 ```json
@@ -73,7 +75,7 @@ mcd-butler/
 
 #### 方式 A：不会 Git —— 下载 ZIP 手动安装（最省事）
 
-1. 打开本项目页面：https://github.com/lifire/mcd-butler
+1. 打开本项目页面：<https://github.com/lifire/mcd-butler>
 2. 点页面右上角绿色 **「Code」** 按钮 → 选 **「Download ZIP」**，把压缩包下载到本地（文件名类似 `mcd-butler-main.zip`）。
 3. 解压压缩包，会得到文件夹 `mcd-butler-main`，里面有 `SKILL.md`、`README.md` 等。**把文件夹改名成 `mcd-butler`**（去掉 `-main` 后缀，名字要和技能一致）。
 4. 打开 WorkBuddy 的技能目录（按你的系统选其一）：
@@ -99,11 +101,13 @@ git clone https://github.com/lifire/mcd-butler.git
 # 进阶：不想复制、想保持和仓库同步，可用符号链接（macOS/Linux）
 ln -s "$(pwd)/mcd-butler" ~/.workbuddy/skills/mcd-butler
 ```
+
 同样重启 WorkBuddy 即可生效。
 
 #### ✅ 验证是否启用成功
 
 在 WorkBuddy 对话框里直接说一句，例如：
+
 > `来份今日麦报` 或 `麦麦省券怎么领？`
 
 如果管家先检查 `mcd-mcp` 连接器、再调用麦当劳工具并返回结果，说明 Skill 已正常工作。
@@ -116,6 +120,7 @@ ln -s "$(pwd)/mcd-butler" ~/.workbuddy/skills/mcd-butler
 - 是否已经在第 2 步配置并**启用**了 `mcd-mcp` 连接器？（Skill 依赖它才能取数据）
 
 ### 4.（可选）开启「今日麦报」每日自动推送
+
 见 `daily-report/automation.example.json`，在 WorkBuddy 创建一个每日定时自动化，prompt 为「生成今日麦报并推送」。
 
 ---
@@ -123,23 +128,28 @@ ln -s "$(pwd)/mcd-butler" ~/.workbuddy/skills/mcd-butler
 ## 💬 使用示例
 
 **今日麦报**
-> 用户：来份今日麦报
+
+> 用户：来份今日麦报  
 > 管家：🎟️ 可领 9 张（已帮你领）｜📅 夜市买一送一｜🍔 最省：双层吉士套餐≈¥29.9｜⭐ 积分 3200，建议换薯条券
 
 **省钱雷达**
-> 用户：今晚怎么吃最省？
+
+> 用户：今晚怎么吃最省？  
 > 管家：（领券+比价）用麦麦省券 + 门店券，板烧套餐立省 ¥10，到手 ¥25.5
 
 **热量营养师**
-> 用户：500 大卡怎么吃？
+
+> 用户：500 大卡怎么吃？  
 > 管家：（营养库+菜单匹配）麦香鸡 + 玉米杯 ≈ 480 kcal / ¥18.5
 
 **积分最优解**
-> 用户：积分怎么换最值？
+
+> 用户：积分怎么换最值？  
 > 管家：（比价）3200 积分换「麦辣鸡腿堡兑换券」性价比最高，另有 800 积分即将过期
 
 **一句话点餐**
-> 用户：点个板烧套餐送到公司
+
+> 用户：点个板烧套餐送到公司  
 > 管家：A 门店，合计 ¥35.5，送至「公司」。确认下单吗？ →（确认后）✅ 订单 #xxxx
 
 ---
@@ -150,37 +160,6 @@ ln -s "$(pwd)/mcd-butler" ~/.workbuddy/skills/mcd-butler
 - 减脂/健身期仍想偶遇麦当劳的用户
 - 积分囤积、想最大化兑换价值的人
 - 懒得翻 App、偏好「说一句话就搞定」的点餐党
-
----
-
-## 🏆 参加「麦当劳程序员创意开发大赛」
-
-- 仓库需为 **Public**，创建时间在 2025-12-25 ~ 2026-10-25。
-- 必须包含：`README.md`、`CONTEST_DECLARATION.md`（不可改）、`MCP_INTEGRATION.md`、`mcp-config.example.json`（仅环境变量）、`workbuddy.md`（参与 WorkBuddy 奖励时）。
-- 报名：在官方仓库发 Issue，正文：
-  ```
-  【参赛申请】
-  项目名称：麦麦全能管家 McButler
-  项目地址：https://github.com/lifire/mcd-butler
-  项目简介：基于麦当劳 MCP 的一站式智能助手，涵盖今日麦报/省钱雷达/热量营养师/积分最优解/一句话点餐五大能力
-  ```
-- 排名按 GitHub 公开 Star 数，前 100 进获奖区。
-
----
-
-## 📤 一键提交到 GitHub（报名两步）
-
-仓库已 `git init` 并提交（commit `846dfc4`），本地日志 `daily-report/2026-10-10.md` 已按 `.gitignore` 排除，不会进仓库。
-
-**① 推送到你的公开仓库**
-1. 打开 `push.bat`（Windows 双击）或 `push.sh`（Git Bash 跑 `bash push.sh`）。
-2. 把里面的 `REPO_URL` 改成你的公开仓库地址（当前已填 `https://github.com/lifire/mcd-butler.git`）：
-   `https://github.com/lifire/mcd-butler.git`
-3. 确保已登录 GitHub（HTTPS 用 Token / 或配好 SSH Key），运行即可完成 `init → add → commit → push`。
-   > 本地我已 `git init` 并提交，但你仍需要自己的凭证才能完成 `push`。脚本会执行 `git branch -M main` 后再推送。
-
-**② 在官方仓库发报名 Issue**
-打开 https://github.com/M-China/mcd-developer-innovation-challenge/issues ，新建 Issue，正文直接复制 `ISSUE.md` 里的内容（已 ≤1000 字、纯文本、无图，`项目地址` 已填好为 `https://github.com/lifire/mcd-butler`）。
 
 ---
 
