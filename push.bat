@@ -7,7 +7,7 @@ REM    2. Edit REPO_URL below -> your PUBLIC repo URL
 REM    3. Login: use GitHub token for HTTPS, or set up SSH key
 REM  Then double-click this file (or run: push.bat)
 REM ============================================================
-set "REPO_URL=https://github.com/<your-github-username>/mcd-butler.git"
+set "REPO_URL=https://github.com/lifire/mcd-butler.git"
 
 git init
 git add .

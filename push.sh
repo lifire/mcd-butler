@@ -8,7 +8,7 @@
 #  Usage:  bash push.sh
 # ============================================================
 set -u
-REPO_URL="https://github.com/<your-github-username>/mcd-butler.git"
+REPO_URL="https://github.com/lifire/mcd-butler.git"
 
 git init
 git add .

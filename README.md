@@ -114,7 +114,7 @@ mcd-butler/
   ```
   【参赛申请】
   项目名称：麦麦全能管家 McButler
-  项目地址：https://github.com/<你的账号>/mcd-butler
+  项目地址：https://github.com/lifire/mcd-butler
   项目简介：基于麦当劳 MCP 的一站式智能助手，涵盖今日麦报/省钱雷达/热量营养师/积分最优解/一句话点餐五大能力
   ```
 - 排名按 GitHub 公开 Star 数，前 100 进获奖区。
@@ -127,13 +127,13 @@ mcd-butler/
 
 **① 推送到你的公开仓库**
 1. 打开 `push.bat`（Windows 双击）或 `push.sh`（Git Bash 跑 `bash push.sh`）。
-2. 把里面的 `REPO_URL` 改成你的公开仓库地址，例如：
-   `https://github.com/<你的GitHub账号>/mcd-butler.git`
+2. 把里面的 `REPO_URL` 改成你的公开仓库地址（当前已填 `https://github.com/lifire/mcd-butler.git`）：
+   `https://github.com/lifire/mcd-butler.git`
 3. 确保已登录 GitHub（HTTPS 用 Token / 或配好 SSH Key），运行即可完成 `init → add → commit → push`。
    > 本地我已 `git init` 并提交，但你仍需要自己的凭证才能完成 `push`。脚本会执行 `git branch -M main` 后再推送。
 
 **② 在官方仓库发报名 Issue**
-打开 https://github.com/M-China/mcd-developer-innovation-challenge/issues ，新建 Issue，正文直接复制 `ISSUE.md` 里的内容（已 ≤1000 字、纯文本、无图）。记得把 `项目地址` 里的 `<你的GitHub账号>` 换成真实账号。
+打开 https://github.com/M-China/mcd-developer-innovation-challenge/issues ，新建 Issue，正文直接复制 `ISSUE.md` 里的内容（已 ≤1000 字、纯文本、无图，`项目地址` 已填好为 `https://github.com/lifire/mcd-butler`）。
 
 ---
 
