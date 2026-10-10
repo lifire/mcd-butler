@@ -1,0 +1,8 @@
+{
+  "_comment": "今日麦报每日自动推送示例配置。在 WorkBuddy 中创建一个每日定时自动化（recurring），prompt 如下，并启用 mcd-mcp 连接器。请勿将本文件中的占位符替换为真实 Token。",
+  "name": "麦麦今日麦报 · 每日推送",
+  "scheduleType": "recurring",
+  "rrule": "FREQ=DAILY;BYHOUR=9;BYMINUTE=0",
+  "prompt": "生成今日麦报：调用 mcd-mcp 的 available-coupons / auto-bind-coupons（确认后领取）/ query-store-coupons / campaign-calendar / query-meals / calculate-price，输出结构化日报（可领券、当月活动、最省吃法、积分建议），并给一句可执行建议。非官方产品，以官方实时数据为准。",
+  "requiresConnector": "mcd-mcp"
+}

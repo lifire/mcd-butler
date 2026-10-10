@@ -1,0 +1,20 @@
+# ===== Secrets / tokens (NEVER commit) =====
+.env
+*.env
+.env.*
+mcp-config.local.json
+mcp-config.json
+
+# ===== Local run logs / generated output (not part of submission) =====
+daily-report/output/
+daily-report/2026-10-10.md
+
+# ===== OS / editor noise =====
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+
+# ===== Node (if any tooling added later) =====
+node_modules/

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🍔 麦麦今日麦报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --mcd-red:#DA291C;
+    --mcd-red-dark:#B81F12;
+    --mcd-yellow:#FFC72C;
+    --mcd-yellow-soft:#FFE9B0;
+    --cream:#FFF8EC;
+    --ink:#3A2A1A;
+    --muted:#9A8576;
+    --card:#FFFFFF;
+    --shadow:0 10px 30px rgba(218,41,28,.15);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;padding:24px 14px;
+    font-family:"ZCOOL KuaiLe","Baloo 2","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,199,44,.20) 0 10px, transparent 11px),
+      radial-gradient(circle at 88% 12%, rgba(218,41,28,.14) 0 9px, transparent 10px),
+      radial-gradient(circle at 70% 80%, rgba(255,199,44,.18) 0 8px, transparent 9px),
+      var(--cream);
+    background-size:140px 140px,160px 160px,120px 120px,auto;
+  }
+  .wrap{max-width:640px;margin:0 auto;}
+  .header{
+    position:relative;background:linear-gradient(135deg,var(--mcd-red),var(--mcd-red-dark));
+    border-radius:30px 30px 14px 14px;padding:26px 24px 30px;
+    box-shadow:var(--shadow);overflow:hidden;text-align:center;color:#fff;
+  }
+  .header::after{
+    content:"";position:absolute;left:0;right:0;bottom:-14px;height:28px;
+    background:radial-gradient(circle at 14px -2px,transparent 13px,var(--mcd-red) 14px) repeat-x;
+    background-size:28px 28px;
+  }
+  .mascot{font-size:54px;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25));animation:bob 2.4s ease-in-out infinite;}
+  .title{font-size:30px;margin:6px 0 2px;text-shadow:0 3px 0 rgba(0,0,0,.18);letter-spacing:1px;}
+  .date{font-size:15px;color:var(--mcd-yellow-soft);font-family:"Baloo 2",sans-serif;}
+  .store{font-size:14px;color:#FFF3D6;margin-top:8px;font-family:"Baloo 2","PingFang SC",sans-serif;opacity:.95;}
+  .card{
+    background:var(--card);border:3px solid #FFE3C2;border-radius:24px;
+    padding:18px 18px 16px;margin-top:18px;box-shadow:var(--shadow);
+    position:relative;animation:pop .35s ease both;
+  }
+  .card h2{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:20px;color:var(--mcd-red);}
+  .chip{
+    width:38px;height:38px;border-radius:50%;background:var(--mcd-yellow);
+    display:grid;place-items:center;font-size:20px;flex:0 0 auto;
+    box-shadow:0 3px 0 rgba(184,31,18,.25);
+  }
+  .expandable{cursor:pointer;user-select:none;margin:8px 0;}
+  .expandable .row{display:flex;align-items:center;gap:10px;padding:10px 12px;
+    background:var(--cream);border-radius:14px;border:2px dashed #FFD9A8;transition:background .15s;}
+  .expandable:hover .row{background:#FFF1D6;}
+  .expandable .emo{font-size:20px;flex:0 0 auto;}
+  .expandable .txt{flex:1;font-size:15px;line-height:1.4;}
+  .expandable .caret{font-size:18px;color:var(--mcd-red);transition:transform .2s;flex:0 0 auto;}
+  .expandable.closed .detail{display:none;}
+  .expandable.closed .caret{transform:rotate(-90deg);}
+  .detail{margin:2px 6px 6px;padding:6px 12px;background:#FFFDF6;border-radius:12px;border:1px solid #FFE9C2;}
+  .detail .sub{font-size:14px;padding:5px 0;color:var(--ink);border-bottom:1px dashed #FFE3C2;line-height:1.5;}
+  .detail .sub:last-child{border-bottom:none;}
+  .pill{display:inline-block;background:var(--mcd-yellow);color:var(--mcd-red-dark);
+    font-weight:800;border-radius:999px;padding:3px 12px;font-family:"Baloo 2",sans-serif;font-size:15px;}
+  .save{position:absolute;top:-12px;right:16px;background:var(--mcd-red);color:#fff;
+    font-size:14px;padding:5px 12px;border-radius:999px;transform:rotate(6deg);
+    box-shadow:0 4px 10px rgba(218,41,28,.35);}
+  .big-deal{text-align:center;padding:14px 8px 6px;}
+  .big-deal .name{font-size:19px;color:var(--ink);margin-bottom:8px;}
+  .big-deal .price{font-size:30px;color:var(--mcd-red);font-family:"Baloo 2",sans-serif;font-weight:800;}
+  .actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;}
+  .hint{margin:8px 2px 0;font-size:12px;color:var(--muted);font-family:"Baloo 2",sans-serif;line-height:1.5;}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+    background:linear-gradient(135deg,var(--mcd-red),var(--mcd-red-dark));
+    color:#fff;border:none;border-radius:999px;padding:9px 16px;
+    font-family:inherit;font-size:15px;font-weight:800;
+    box-shadow:0 4px 0 rgba(184,31,18,.35);transition:transform .08s,box-shadow .08s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(184,31,18,.35);}
+  .btn.yellow{background:linear-gradient(135deg,var(--mcd-yellow),#F0A500);color:var(--mcd-red-dark);box-shadow:0 4px 0 rgba(184,31,18,.25);}
+  .tip{margin-top:18px;background:linear-gradient(135deg,#FFF3D6,#FFE9B0);
+    border:3px solid var(--mcd-yellow);border-radius:20px;padding:14px 16px;
+    font-size:16px;color:var(--mcd-red-dark);text-align:center;}
+  .footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px;font-family:"Baloo 2",sans-serif;}
+  .footer .fry{font-size:16px;}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+    background:var(--mcd-red);color:#fff;padding:12px 20px;border-radius:999px;
+    font-size:15px;box-shadow:0 8px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;
+    transition:opacity .25s,transform .25s;z-index:99;max-width:90vw;text-align:center;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+  @media (max-width:480px){.title{font-size:25px}.big-deal .price{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="mascot">🍔</div>
+    <div class="title">麦麦今日麦报</div>
+    <div class="date">2026-10-10 星期六</div>
+    <div class="store">📍 麦当劳·国贸餐厅 · 北京市朝阳区建国路 88 号</div>
+  </div>
+
+  <!-- 🎟️ 可领 / 已领券 -->
+  <div class="card">
+    <h2><span class="chip">🎟️</span>今日可领 / 已领券</h2>
+
+    <div class="expandable closed" onclick="toggleRow(this)">
+      <div class="row"><span class="emo">🎫</span><span class="txt">已领麦麦省券 <b>9 张</b>（点击展开看是哪 9 张）</span><span class="caret">▾</span></div>
+      <div class="detail">
+        <div class="sub">① 麦麦省·满30减8（全品类）</div>
+        <div class="sub">② 麦麦省·买一送一（红豆派）</div>
+        <div class="sub">③ 麦麦省·满25减5（早餐专场）</div>
+        <div class="sub">④ 麦麦省·第二份半价（麦辣鸡翅）</div>
+        <div class="sub">⑤ 麦麦省·满40减12（超值套餐）</div>
+        <div class="sub">⑥ 麦麦省·免费升杯（中杯→大杯可乐）</div>
+        <div class="sub">⑦ 麦麦省·满20减6（甜品站）</div>
+        <div class="sub">⑧ 麦麦省·买一送一（圆筒冰淇淋）</div>
+        <div class="sub">⑨ 麦麦省·满50减18（家庭桶）</div>
+      </div>
+    </div>
+
+    <div class="expandable closed" onclick="toggleRow(this)">
+      <div class="row"><span class="emo">🏪</span><span class="txt">当前门店可用券 <b>3 张</b></span><span class="caret">▾</span></div>
+      <div class="detail">
+        <div class="sub">① 板烧鸡腿堡套餐 -¥8</div>
+        <div class="sub">② 麦麦夜市·指定套餐买一送一</div>
+        <div class="sub">③ 会员日积分 ×2（每周三）</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" data-cmd="帮我领麦麦省券，并查看当前门店可用券">🤖 帮我领这些券</button>
+    </div>
+    <p class="hint">点券项展开看具体哪几张；点按钮 → 指令已复制，去 WorkBuddy 粘贴发送即可（领券会先跟你确认）</p>
+  </div>
+
+  <!-- 📅 当月活动（每个活动独立展开看详情） -->
+  <div class="card">
+    <h2><span class="chip">📅</span>当月活动</h2>
+
+    <div class="expandable closed" onclick="toggleRow(this)">
+      <div class="row"><span class="emo">🌙</span><span class="txt">麦麦夜市·指定套餐买一送一（至 10/31）</span><span class="caret">▾</span></div>
+      <div class="detail">
+        <div class="sub">参与套餐：双层吉士套餐、板烧鸡腿堡套餐、麦辣鸡腿堡套餐、劲脆鸡腿堡套餐</div>
+        <div class="sub">时间：每日 17:00–22:00（麦麦夜市时段）</div>
+        <div class="sub">范围：堂食 / 麦乐送均可，限参与活动门店</div>
+        <div class="sub">规则：同款套餐买一送一，不与其他优惠同享</div>
+      </div>
+    </div>
+
+    <div class="expandable closed" onclick="toggleRow(this)">
+      <div class="row"><span class="emo">⭐</span><span class="txt">会员日·积分 ×2 加速（每周三）</span><span class="caret">▾</span></div>
+      <div class="detail">
+        <div class="sub">时间：每周三全天</div>
+        <div class="sub">内容：消费累积积分翻倍（含麦乐送订单）</div>
+        <div class="sub">提示：本月剩余会员日 10/14、10/21、10/28</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🍔 最省吃法 -->
+  <div class="card">
+    <span class="save">立省 ¥10</span>
+    <h2><span class="chip">🍔</span>最省吃法</h2>
+    <div class="big-deal">
+      <div class="name">双层吉士套餐 + 夜市买一送一</div>
+      <div class="price">¥29.9 <span class="pill">原价 ¥39.9</span></div>
+    </div>
+    <div class="actions">
+      <button class="btn" data-cmd="帮我点这个单：双层吉士套餐（用夜市买一送一券），送到常用地址">🤖 帮我点这个单</button>
+    </div>
+    <p class="hint">点按钮 → 复制点单指令，去 WorkBuddy 发送，下单前会跟你确认</p>
+  </div>
+
+  <!-- ⭐ 积分建议 -->
+  <div class="card">
+    <h2><span class="chip">⭐</span>积分建议</h2>
+    <div class="expandable closed" onclick="toggleRow(this)">
+      <div class="row"><span class="emo">💰</span><span class="txt">当前积分 <b>3,200</b>（其中 800 即将过期）</span><span class="caret">▾</span></div>
+      <div class="detail">
+        <div class="sub">① 薯条兑换券 —— 性价比最高，建议优先换</div>
+        <div class="sub">② 麦辣鸡腿堡兑换券 —— 次选</div>
+        <div class="sub">③ 800 积分将于月底过期，尽快用掉</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn yellow" data-cmd="用我的 3200 积分换「薯条兑换券」，先确认再换">🤖 帮我换这个</button>
+    </div>
+  </div>
+
+  <!-- 一句话建议 -->
+  <div class="tip">
+    💡 今晚用夜市券下单最划算，立省 ¥10，顺手把 800 积分花掉～
+    <div class="actions" style="justify-content:center;">
+      <button class="btn" data-cmd="按建议来：今晚用夜市券下单立省 ¥10，并把快过期的 800 积分花掉">🤖 就按这个来</button>
+    </div>
+  </div>
+
+  <div class="footer"><span class="fry">🍟</span> 非官方产品，数据以麦当劳官方实时结果为准</div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+  function toggleRow(el){ el.classList.toggle('closed'); }
+  function wb(btn){
+    var cmd = btn.getAttribute('data-cmd') || '';
+    var ok = function(){ showToast('已复制指令 ✓ 去 WorkBuddy 粘贴发送即可执行'); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(cmd).then(ok).catch(function(){ fallback(cmd, ok); });
+    } else { fallback(cmd, ok); }
+  }
+  function fallback(text, cb){
+    var ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0';ta.style.top='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);if(cb)cb();
+  }
+  function showToast(msg){
+    var t=document.getElementById('toast');
+    t.textContent=msg;t.classList.add('show');
+    clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2400);
+  }
+  var bs=document.querySelectorAll('.btn[data-cmd]');
+  for(var i=0;i<bs.length;i++){bs[i].addEventListener('click',function(){wb(this);});}
+</script>
+</body>
+</html>
