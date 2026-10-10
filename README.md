@@ -24,11 +24,17 @@
 ```
 mcd-butler/
 ├── SKILL.md                  # 核心：WorkBuddy Skill 定义（能力、调用流程、安全约束）
-├── README.md                 # 本文件：项目介绍、安装、使用示例
+├── README.md                 # 本文件：项目介绍、安装、使用示例、提交指南
 ├── MCP_INTEGRATION.md        # MCP Server / Tool / 调用流程 / 业务价值说明
 ├── CONTEST_DECLARATION.md    # 参赛声明（活动要求，内容不可改动）
 ├── mcp-config.example.json   # 脱敏配置示例（仅环境变量占位符）
+├── .gitignore                # 忽略 Token / 本地日志 / 生成产物（切勿提交密钥）
+├── push.bat                  # Windows 一键提交并推送（改 REPO_URL 后双击）
+├── push.sh                   # Git Bash 一键提交并推送（改 REPO_URL 后 bash push.sh）
+├── ISSUE.md                  # 报名 Issue 文案（复制到官方仓库发 Issue）
 ├── daily-report/
+│   ├── template.html         # 今日麦报 HTML 模板（Token 占位符，供 Skill/自动化填充）
+│   ├── sample.html           # 填好示例数据的预览版
 │   └── automation.example.json  # 今日麦报「每日自动推送」自动化配置示例
 └── workbuddy.md              # WorkBuddy 开发上下文（联动奖励核验用）
 ```
@@ -112,6 +118,22 @@ mcd-butler/
   项目简介：基于麦当劳 MCP 的一站式智能助手，涵盖今日麦报/省钱雷达/热量营养师/积分最优解/一句话点餐五大能力
   ```
 - 排名按 GitHub 公开 Star 数，前 100 进获奖区。
+
+---
+
+## 📤 一键提交到 GitHub（报名两步）
+
+仓库已 `git init` 并提交（commit `846dfc4`），本地日志 `daily-report/2026-10-10.md` 已按 `.gitignore` 排除，不会进仓库。
+
+**① 推送到你的公开仓库**
+1. 打开 `push.bat`（Windows 双击）或 `push.sh`（Git Bash 跑 `bash push.sh`）。
+2. 把里面的 `REPO_URL` 改成你的公开仓库地址，例如：
+   `https://github.com/<你的GitHub账号>/mcd-butler.git`
+3. 确保已登录 GitHub（HTTPS 用 Token / 或配好 SSH Key），运行即可完成 `init → add → commit → push`。
+   > 本地我已 `git init` 并提交，但你仍需要自己的凭证才能完成 `push`。脚本会执行 `git branch -M main` 后再推送。
+
+**② 在官方仓库发报名 Issue**
+打开 https://github.com/M-China/mcd-developer-innovation-challenge/issues ，新建 Issue，正文直接复制 `ISSUE.md` 里的内容（已 ≤1000 字、纯文本、无图）。记得把 `项目地址` 里的 `<你的GitHub账号>` 换成真实账号。
 
 ---
 
